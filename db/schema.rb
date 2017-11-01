@@ -23,11 +23,12 @@ ActiveRecord::Schema.define(version: 20171101221745) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.integer "commentable_id"
-    t.string "commentable_type"
     t.bigint "user_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -48,11 +49,12 @@ ActiveRecord::Schema.define(version: 20171101221745) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer "value"
-    t.integer "rateable_id"
     t.string "rateable_type"
+    t.bigint "rateable_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_ratings_on_rateable_type_and_rateable_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
@@ -75,7 +77,7 @@ ActiveRecord::Schema.define(version: 20171101221745) do
     t.string "email"
     t.string "username"
     t.string "password_digest"
-    t.boolean "trusted_reviewer"
+    t.boolean "trusted_reviewer", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
