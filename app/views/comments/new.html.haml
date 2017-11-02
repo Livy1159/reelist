@@ -1,0 +1,13 @@
+%h2 Add a comment:
+=form_with(model: [@film, @film.comments.build], local: true) do |form|
+  %p
+    =form.label :user
+    %br/
+    =form.text_field :user
+  %p
+    =form.label :body
+    %br/
+    =form.text_area :body
+  %p
+    =form.submit
+
