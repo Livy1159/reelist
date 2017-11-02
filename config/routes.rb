@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   root 'films#index'
   resources :films, only: [:index, :show] do
-    resources :reviews, only: [:index]
-    resources :comments, only: [:index, :new, :create, :delete]
     resources :ratings, only: [:new, :create]
+    resources :comments, only: [:index, :new, :create, :delete]
+    resources :reviews, only: [:index, :new, :create] do
+      resources :comments, only: [:index, :new, :create, :delete]
+      resources :ratings, only: [:new, :create]
+    end
   end
+  
   resources :users, only: [:create, :new]
-  resources :sessions, only: [:new, :create, :delete]
-
+  resources :sessions, only: [:new, :create]
+  delete 'sessions', to: 'sessions#destroy'
 
 end

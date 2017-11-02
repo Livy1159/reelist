@@ -15,7 +15,8 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def logout
+  def destroy
+    User.find(session[:id]).destroy
     session[:id] = nil
     redirect_to films_path
   end

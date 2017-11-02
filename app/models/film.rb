@@ -4,4 +4,6 @@ class Film < ApplicationRecord
   has_many :categories, through: :film_categories, source: :category
   has_many :comments, as: :commentable
   has_many :ratings, as: :rateable
+
+  validates :title, presence: true
 end

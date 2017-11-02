@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      redirect_to films_path #dont have this yet
+      redirect_to films_path
     else
       @errors = @user.errors.full_messages
       render :'users/new'
