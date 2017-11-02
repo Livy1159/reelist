@@ -1,5 +1,16 @@
 %h1
   =@film.title
+%h4
+  =@film.avg_rating
+%h4 Add a rating:
+=form_with(model: [@film, @film.ratings.build], local: true) do |form|
+  %p
+    =form.label :body
+    %br/
+    =form.text_area :body
+  %p
+    =form.submit
+
 %h3
   Categories
 %ul
