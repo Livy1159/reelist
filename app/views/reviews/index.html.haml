@@ -3,3 +3,28 @@
 %ul
   - @reviews.each do |review|
     %li= review.body
+
+    %h2
+      Comments
+    %h4 Add a comment:
+    =form_with(model: [review, review.comments.build], local: true) do |form|
+      %p
+        =form.label :body
+        %br/
+        =form.text_area :body
+      %p
+        =form.submit
+
+    - review.comments.each do |comment|
+      %li= comment.body
+      %li= comment.ratings
+      %li= comment.user
+
+
+
+
+
+
+
+
+
