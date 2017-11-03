@@ -6,23 +6,25 @@
     %h4
       Average Rating:
       =review.avg_rating
-    %h4 Add a rating:
-    =form_with(model: [@film, review, review.ratings.build], local: true) do |form|
-      %p
-        = form.select :value, [1, 2, 3, 4, 5]
-      %p
-        =form.submit
+    -if logged_in?
+      %h4 Add a rating:
+      =form_with(model: [@film, review, review.ratings.build], local: true) do |form|
+        %p
+          = form.select :value, [1, 2, 3, 4, 5]
+        %p
+          =form.submit
 
     %h4
       Comments
-    %h5 Add a comment:
-    =form_with(model: [@film, review, review.comments.build], local: true) do |form|
-      %p
-        =form.label :body
-        %br/
-        =form.text_area :body
-      %p
-        =form.submit
+    -if logged_in?
+      %h5 Add a comment:
+      =form_with(model: [@film, review, review.comments.build], local: true) do |form|
+        %p
+          =form.label :body
+          %br/
+          =form.text_area :body
+        %p
+          =form.submit
 
     - review.comments.each do |comment|
       %li
