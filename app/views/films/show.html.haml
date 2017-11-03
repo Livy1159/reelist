@@ -3,12 +3,13 @@
 %h4
   Average Rating:
   =@film.avg_rating
-%h4 Add a rating:
-=form_with(model: [@film, @film.ratings.build], local: true) do |form|
-  %p
-    = form.select :value, [1, 2, 3, 4, 5]
-  %p
-    =form.submit
+-if logged_in?
+  %h4 Add a rating:
+  =form_with(model: [@film, @film.ratings.build], local: true) do |form|
+    %p
+      = form.select :value, [1, 2, 3, 4, 5]
+    %p
+      =form.submit
 
 %h3
   Categories
@@ -21,17 +22,19 @@
 
 %h2
   Comments
-%h4 Add a comment:
-=form_with(model: [@film, @film.comments.build], local: true) do |form|
-  %p
-    =form.label :body
-    %br/
-    =form.text_area :body
-  %p
-    =form.submit
 %ul
-  - @comments.each do |comment|
+  - @film.comments.each do |comment|
     %li
       =comment.body
       =comment.user.username
-      -# =link_to category.name, category_path(category)
+      -# -if comment.user == current_user
+      -# =link_to "Delete", comments_path, method: :delete
+-if logged_in?
+  %h4 Add a comment:
+  =form_with(model: [@film, @film.comments.build], local: true) do |form|
+    %p
+      =form.label :body
+      %br/
+      =form.text_area :body
+    %p
+      =form.submit
