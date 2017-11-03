@@ -35,9 +35,10 @@
   -if logged_in?
     %h4 Add a comment:
     =form_with(model: [@film, @film.comments.build], local: true) do |form|
-      %p
+      %p{ :class => 'comment-body' }
         =form.label :body
         %br/
         =form.text_area :body
       %p
         =form.submit
+
