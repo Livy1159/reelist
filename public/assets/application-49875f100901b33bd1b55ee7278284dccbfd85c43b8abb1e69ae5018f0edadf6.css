@@ -1,3 +1,13 @@
+/* line 1, /Users/apprentice/reelist/app/assets/stylesheets/global.scss.erb */
+body {
+  font-family: "Marker Felt";
+  color: white;
+  background-image: url(/assets/film-977c8ed5e98529e0964cd2ec049b3cd489724520820a836890fc864876b17d49.jpg);
+  background-size: cover;
+  padding-left: 500px;
+  padding-top: 50px;
+  font-size: 30px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -10,9 +20,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
 
 
 
