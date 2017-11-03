@@ -1,24 +1,26 @@
 %h1 Register
 
-= form_for @user do |f|
-  = f.label 'email'
-  = f.text_field :email
-  = f.label 'username'
-  = f.text_field :username
-  = f.label 'password'
-  = f.password_field :password
-  = f.label 'password confirmation'
-  = f.password_field :password_confirmation
-  = f.submit
+%div{ :id => 'register'}
+  = form_for @user do |f|
+    = f.label 'email'
+    = f.text_field :email
+    = f.label 'username'
+    = f.text_field :username
+    = f.label 'password'
+    = f.password_field :password
+    = f.label 'password confirmation'
+    = f.password_field :password_confirmation
+    = f.submit
 
 %h1 Already registered? Login here...
 
-= form_with(url: '/sessions', method: "post", local: true) do |f|
-  = f.label 'username'
-  = f.text_field :username
-  = f.label 'password'
-  = f.password_field :password
-  = f.submit 'Login'
+%div{ :id => 'login'}
+  = form_with(url: '/sessions', method: "post", local: true) do |f|
+    = f.label 'username'
+    = f.text_field :username
+    = f.label 'password'
+    = f.password_field :password
+    = f.submit 'Login'
 
 
 
