@@ -12,11 +12,11 @@ class CommentsController < ApplicationController
 
   def create
     if request.fullpath.include?("/reviews")
-      @commentable = Review.find_by(params[:id])
+      @commentable = Review.find(params[:review_id])
     else
-      @commentable = Film.find_by(params[:id])
+      @commentable = Film.find(params[:film_id])
     end
-    @film = Film.find_by(params[:id])
+    @film = Film.find(params[:film_id])
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
