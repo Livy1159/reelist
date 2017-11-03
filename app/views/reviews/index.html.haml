@@ -3,10 +3,19 @@
 %ul
   - @reviews.each do |review|
     %li= review.body
+    %h4
+      Average Rating:
+      =review.avg_rating
+    %h4 Add a rating:
+    =form_with(model: [@film, review, review.ratings.build], local: true) do |form|
+      %p
+        = form.select :value, [1, 2, 3, 4, 5]
+      %p
+        =form.submit
 
-    %h2
+    %h4
       Comments
-    %h4 Add a comment:
+    %h5 Add a comment:
     =form_with(model: [@film, review, review.comments.build], local: true) do |form|
       %p
         =form.label :body
@@ -15,10 +24,12 @@
       %p
         =form.submit
 
-    -# - review.comments.each do |comment|
-    -#   %li= comment.body
-    -#   %li= comment.ratings
-    -#   %li= comment.user
+    - review.comments.each do |comment|
+      %li
+        = comment.body
+        -# # = comment.user.username
+
+
 
 
 
