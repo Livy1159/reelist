@@ -20,22 +20,24 @@
 %h3
   =link_to "Reviews", film_reviews_path(@film)
 
-%h2
-  Comments
-%ul
-  - @film.comments.each do |comment|
-    %li
-      =comment.body
-      =comment.user.username
-      -if comment.user == current_user
-        =link_to "Delete", [comment.commentable, comment], method: :delete
+%div{ :id => 'comments'}
+  %h2
+    Comments
+  %ul
+    - @film.comments.each do |comment|
+      %div{ :id => 'all-comments'}
+        %li
+          =comment.body
+          =comment.user.username
+          -if comment.user == current_user
+            =link_to "Delete", [comment.commentable, comment], method: :delete
 
--if logged_in?
-  %h4 Add a comment:
-  =form_with(model: [@film, @film.comments.build], local: true) do |form|
-    %p
-      =form.label :body
-      %br/
-      =form.text_area :body
-    %p
-      =form.submit
+  -if logged_in?
+    %h4 Add a comment:
+    =form_with(model: [@film, @film.comments.build], local: true) do |form|
+      %p
+        =form.label :body
+        %br/
+        =form.text_area :body
+      %p
+        =form.submit
