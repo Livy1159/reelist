@@ -10,7 +10,7 @@ feature 'visiting the films show page' do
 
      visit "/films/#{new_film.id}"
 
-    within("#comments") do
+    within(".comment-body") do
       fill_in 'Body', with: 'Great movie'
     end
     click_button 'Create Comment'
