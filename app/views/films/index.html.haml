@@ -1,13 +1,14 @@
-%h1
-  Welcome to The Reelist!
+%div{ :class => 'homepage'}
+  %h1
+    Welcome to The Reelist!
 
-%p
-  Click
-  =link_to "here", reviews_path
-  to see the newest reviews!
+  %p
+    Click
+    =link_to "here", reviews_path
+    to see the newest reviews!
 
-%ul
-  -@films.each do |film|
-    %li
-      =link_to film.title, film_path(film)
+  %ul
+    -@films.each do |film|
+      %li
+        =link_to film.title, film_path(film)
 
