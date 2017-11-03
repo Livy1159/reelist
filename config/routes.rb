@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories, only: [:index] do
+    resources :reviews, only: [:index]
+  end
+
+  resources :reviews, only: [:index]
+
   resources :users, only: [:create, :new]
   resources :sessions, only: [:new, :create, :delete]
   delete 'sessions', to: 'sessions#destroy'

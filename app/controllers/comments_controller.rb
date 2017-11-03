@@ -11,18 +11,20 @@ class CommentsController < ApplicationController
   end
 
   def create
-    if request.fullpath.include?("/films")
-      @commentable = Film.find_by(params[:id])
-    else
+    if request.fullpath.include?("/reviews")
       @commentable = Review.find_by(params[:id])
+    else
+      @commentable = Film.find_by(params[:id])
     end
-    @film = @commentable
-
-
+    @film = Film.find_by(params[:id])
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to @commentable
+      if @commentable.class == Review
+        redirect_to film_reviews_path(@film)
+      else
+        redirect_to film_path(@film)
+      end
     else
       render :'films/show'
     end
