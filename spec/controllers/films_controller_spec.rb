@@ -12,13 +12,15 @@ RSpec.describe FilmsController, type: :controller do
 			get :index
 			expect(response).to render_template(:index)
 		end
-	end
-	 describe "GET #show" do
-	 	context "finds a film by id" do
-	 		it "renders a film " do
-	 		expect(response). to render_template(:show)
-	 	end
 	 end
+	 # describe "GET #show/:id" do
+	 # 	# context "finds a film by id" do
+	 # 		get :show, id:
+	 # 		it "renders a film" do
+	 # 		expect(response).to redirect_to(:show)
+	 # 	end
+	 # end
+  # end
  
-    end		  
+    	  
 end

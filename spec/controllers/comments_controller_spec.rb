@@ -8,5 +8,7 @@ RSpec.describe CommentsController, type: :controller do
 			expect(assigns(@comments)).to eq(@film.comments)
 		end
 	end
+	
+	
 
 end
