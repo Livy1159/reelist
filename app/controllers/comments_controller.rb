@@ -31,9 +31,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @film = Film.find(params[:film_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to films_path
+    redirect_to film_path(@film)
   end
 
   private
