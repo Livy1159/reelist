@@ -22,15 +22,24 @@ end
 
 reviews = 10.times.map do
   Review.create!( body:  Faker::Movie.quote,
-                  film_id:       Faker::Number.between(1, 10),
-                  user_id:    Faker::Number.between(1, 10))
+                  film_id: Film.all.sample.id,
+                  user_id: User.all.sample.id )
 end
 
 ratings = 10.times.map do
+  type = [Film, Review].sample
   Rating.create!( value: Faker::Number.between(1, 5),
-                  rateable_type: [Film, Review].sample,
-                  rateable_id: Faker::Number.between(1, 10),
-                  user_id: Faker::Number.between(1, 10))
+                  rateable_type: type,
+                  rateable_id: type.all.sample.id,
+                  user_id: User.all.sample.id)
+end
+
+comments = 10.times.map do
+  type = [Film, Review].sample
+  Comment.create!( body: Faker::Movie.quote,
+                  commentable_type: type,
+                  commentable_id: type.all.sample.id,
+                  user_id: User.all.sample.id)
 end
 
 
