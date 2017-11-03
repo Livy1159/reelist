@@ -14,7 +14,13 @@
  *= require_self
  */
 body {
-  padding: 20px;
   font-family: "Marker Felt";
-  background-image: url("purple.jpg");
+  color: white;
+  background-image: url("film.jpg");
+  background-size: cover;
+  padding-left: 500px;
+  padding-top: 50px;
+  font-size: 30px;
 }
+
+

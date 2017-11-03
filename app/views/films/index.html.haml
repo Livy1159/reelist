@@ -7,8 +7,7 @@
     =link_to "here", reviews_path
     to see the newest reviews!
 
-  %ul
-    -@films.each do |film|
-      %li
-        =link_to film.title, film_path(film)
-
+%ul
+  -@films.each do |film|
+    %li
+      =link_to film.title, film_path(film)
