@@ -11,16 +11,21 @@ class RatingsController < ApplicationController
   end
 
   def create
-    if request.fullpath.include?("/films")
-      @rateable = Film.find_by(params[:id])
-    else
+    if request.fullpath.include?("/reviews")
       @rateable = Review.find_by(params[:id])
+    else
+      @rateable = Film.find_by(params[:id])
     end
-    @film = @rateable
+    @film = Film.find_by(params[:id])
     @rating = @rateable.ratings.new(rating_params)
     @rating.user = current_user
     if @rating.save
-      redirect_to @rateable
+      if @rateable.class == Review
+        redirect_to film_reviews_path(@film)
+      else
+        redirect_to film_path(@film)
+      end
+
     else
       render :'films/show'
     end

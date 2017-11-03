@@ -1,24 +1,54 @@
 %h1
+  Reviews for
   = @film.title
+
+-if logged_in? && current_user.trusted_reviewer == true
+  =form_with(model: [@film, @review], local: true) do |form|
+    %p
+      =form.label :body
+      %br/
+      =form.text_area :body
+    %p
+      =form.submit
+
 %ul
   - @reviews.each do |review|
-    %li= review.body
-
     %h2
-      Comments
-    %h4 Add a comment:
-    =form_with(model: [@film, review, review.comments.build], local: true) do |form|
-      %p
-        =form.label :body
-        %br/
-        =form.text_area :body
-      %p
-        =form.submit
+      %li
+        Review:
+        = review.body
+    %p
+    Author:
+    =review.user.username
+    %h4
+      Average Review Rating:
+      =review.avg_rating
+    -if logged_in?
+      %h4 Add a rating:
+      =form_with(model: [@film, review, review.ratings.build], local: true) do |form|
+        %p
+          = form.select :value, [1, 2, 3, 4, 5]
+        %p
+          =form.submit
 
-    -# - review.comments.each do |comment|
-    -#   %li= comment.body
-    -#   %li= comment.ratings
-    -#   %li= comment.user
+    %h4
+      Comments
+    -if logged_in?
+      %h5 Add a comment:
+      =form_with(model: [@film, review, review.comments.build], local: true) do |form|
+        %p
+          =form.label :body
+          %br/
+          =form.text_area :body
+        %p
+          =form.submit
+
+    - review.comments.each do |comment|
+      %li
+        = comment.body
+
+
+
 
 
 

@@ -1,0 +1,11 @@
+%h1
+  =@category.name
+%h4
+  Reviews
+%h5
+  %ul
+    -@reviews.each do |review|
+      %li
+        =review.film.title
+        %br
+        =review.body

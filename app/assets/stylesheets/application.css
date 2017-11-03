@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: "Marker Felt";
+  color: white;
+  background-image: url("film.jpg");
+  background-size: cover;
+  padding-left: 500px;
+  padding-top: 50px;
+  font-size: 30px;
+}
+
+
