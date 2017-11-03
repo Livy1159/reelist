@@ -8,9 +8,9 @@ Rails.application.routes.draw do
       resources :ratings, only: [:new, :create]
     end
   end
-  
+
   resources :users, only: [:create, :new]
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :delete]
   delete 'sessions', to: 'sessions#destroy'
 
 end

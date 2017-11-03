@@ -7,7 +7,7 @@
     %h2
       Comments
     %h4 Add a comment:
-    =form_with(model: [review, review.comments.build], local: true) do |form|
+    =form_with(model: [@film, review, review.comments.build], local: true) do |form|
       %p
         =form.label :body
         %br/
@@ -15,10 +15,10 @@
       %p
         =form.submit
 
-    - review.comments.each do |comment|
-      %li= comment.body
-      %li= comment.ratings
-      %li= comment.user
+    -# - review.comments.each do |comment|
+    -#   %li= comment.body
+    -#   %li= comment.ratings
+    -#   %li= comment.user
 
 
 
