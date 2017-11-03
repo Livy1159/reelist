@@ -7,15 +7,7 @@
     =link_to "here", reviews_path
     to see the newest reviews!
 
-<<<<<<< HEAD
 %ul
   -@films.each do |film|
-    %li{ :id => 'film' }
+    %li
       =link_to film.title, film_path(film)
-=======
-  %ul
-    -@films.each do |film|
-      %li
-        =link_to film.title, film_path(film)
->>>>>>> 8dade2c31c61c87166e2ada59d8028df280f5f15
-

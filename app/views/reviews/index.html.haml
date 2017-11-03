@@ -2,7 +2,7 @@
   Reviews for
   = @film.title
 
--if current_user.trusted_reviewer == true
+-if logged_in? && current_user.trusted_reviewer == true
   =form_with(model: [@film, @review], local: true) do |form|
     %p
       =form.label :body
