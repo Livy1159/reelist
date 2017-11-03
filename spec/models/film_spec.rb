@@ -21,7 +21,7 @@ describe Film do
 
   describe "film comments" do
     it "has many comments" do
-      comment = Comment.create(user: user, body: "superb!")
+      comment = Comment.create(user: user, body: "superb!", commentable_id: film.id, commentable_type: 'Film')
       expect(film.comments.first).to eq(comment)
     end
   end
