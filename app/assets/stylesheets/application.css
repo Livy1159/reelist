@@ -16,5 +16,9 @@
 body {
   padding: 20px;
   font-family: "Marker Felt";
-  background-image: url("purple.jpg");
+  color: white;
+  background-image: url("film.jpg");
+  background-size: cover;
 }
+
+

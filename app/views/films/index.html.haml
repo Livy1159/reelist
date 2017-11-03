@@ -8,6 +8,6 @@
 
 %ul
   -@films.each do |film|
-    %li
+    %li{ :id => 'film' }
       =link_to film.title, film_path(film)
 
