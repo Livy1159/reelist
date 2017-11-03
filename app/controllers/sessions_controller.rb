@@ -2,11 +2,12 @@ class SessionsController < ApplicationController
   include SessionsHelper
 
   def create
-    @user = User.find_by_email(session_params[:email])
+    @user = User.find_by_username(session_params[:username])
     if @user && @user.authenticate(session_params[:password])
       login(@user)
       redirect_to films_path
     else
+      @user = User.new
       @errors = ["Invalid username or password."]
       render :'users/new'
     end
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
   def new
   end
 
-  def logout
+  def destroy
     session[:id] = nil
     redirect_to films_path
   end

@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <% unless logged_in? %>
+      <a href="/users/new">Register | Login</a>
+    <% end %>
+    <% if logged_in? %>
+      <%= current_user.username %>
+      <%= link_to 'logout', sessions_path, method: "delete" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
