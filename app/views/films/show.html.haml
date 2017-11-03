@@ -27,8 +27,9 @@
     %li
       =comment.body
       =comment.user.username
-      -# -if comment.user == current_user
-      -# =link_to "Delete", comments_path, method: :delete
+      -if comment.user == current_user
+        =link_to "Delete", [comment.commentable, comment], method: :delete
+
 -if logged_in?
   %h4 Add a comment:
   =form_with(model: [@film, @film.comments.build], local: true) do |form|

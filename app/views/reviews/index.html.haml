@@ -1,5 +1,15 @@
 %h1
   = @film.title
+
+-if current_user.trusted_reviewer == true
+  =form_with(model: [@film, @review], local: true) do |form|
+    %p
+      =form.label :body
+      %br/
+      =form.text_area :body
+    %p
+      =form.submit
+
 %ul
   - @reviews.each do |review|
     %li= review.body
@@ -29,7 +39,7 @@
     - review.comments.each do |comment|
       %li
         = comment.body
-        -# # = comment.user.username
+
 
 
 
