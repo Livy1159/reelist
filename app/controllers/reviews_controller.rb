@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       @reviews = @category.reviews
       render "categories/index"
     else
-      @reviews = Review.all
+      @reviews = Review.all.limit(5)
       render "reviews/reviews"
     end
   end
