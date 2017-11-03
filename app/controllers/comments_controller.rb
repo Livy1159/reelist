@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  include SessionsHelper
+
   def index
     @film = Film.find_by(params[:id])
     @comments = @film.comments
@@ -9,25 +11,31 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @film = Film.find_by(params[:id])
-    @comment = @film.comments.new(comment_params)
-    @comment.user = @current_user
+    if request.fullpath.include?("/films")
+      @commentable = Film.find_by(params[:id])
+    else
+      @commentable = Review.find_by(params[:id])
+    end
+    @film = @commentable
+
+
+    @comment = @commentable.comments.new(comment_params)
+    @comment.user = current_user
     if @comment.save
-      redirect_to film_path(@film)
+      redirect_to @commentable
     else
       render :'films/show'
     end
   end
 
   def destroy
-    @film = Film.find_by(params[:id])
-    @comment = @film.comments.find(params[:id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to film_path(@film)
   end
 
   private
   def comment_params
-    params.require(:comment).permit(:user, :body)
+    params.require(:comment).permit(:user, :body, :commentable_id, :commentable_type)
   end
 end

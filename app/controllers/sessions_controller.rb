@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
       login(@user)
       redirect_to films_path
     else
+      @user = User.new
       @errors = ["Invalid username or password."]
       render :'users/new'
     end
@@ -16,7 +17,6 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    User.find(session[:id]).destroy
     session[:id] = nil
     redirect_to films_path
   end

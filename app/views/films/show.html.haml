@@ -1,13 +1,12 @@
 %h1
   =@film.title
 %h4
+  Average Rating:
   =@film.avg_rating
 %h4 Add a rating:
 =form_with(model: [@film, @film.ratings.build], local: true) do |form|
   %p
-    =form.label :body
-    %br/
-    =form.text_area :body
+    = form.select :value, [1, 2, 3, 4, 5]
   %p
     =form.submit
 
@@ -29,9 +28,8 @@
   %p
     =form.submit
 %ul
-  -@film.comments.each do |comment|
+  - @comments.each do |comment|
     %li
       =comment.body
-      =comment.user
+      =comment.user.username
       -# =link_to category.name, category_path(category)
-
