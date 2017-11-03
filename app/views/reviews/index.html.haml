@@ -1,4 +1,5 @@
 %h1
+  Reviews for
   = @film.title
 
 -if current_user.trusted_reviewer == true
@@ -12,9 +13,15 @@
 
 %ul
   - @reviews.each do |review|
-    %li= review.body
+    %h2
+      %li
+        Review:
+        = review.body
+    %p
+    Author:
+    =review.user.username
     %h4
-      Average Rating:
+      Average Review Rating:
       =review.avg_rating
     -if logged_in?
       %h4 Add a rating:
