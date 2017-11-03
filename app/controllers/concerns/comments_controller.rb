@@ -9,3 +9,4 @@ class CosController < ApplicationController
 
   def show
   end
+end
